@@ -1,0 +1,12 @@
+https://static.mercusys.com/gpl/GPL_MR70Xv2.tar20230105025301.gz
+https://static.mercusys.com/gpl/GPL_MR80Xv1.tar20230105025217.gz
+https://static.tp-link.com/resources/gpl/Archer_AX6000v1_GPL_code.tar.gz
+https://static.tp-link.com/resources/gpl/TL-R600VPN_GPL_Codes.tar.gz
+https://static.tp-link.com/upload/gpl-code/2022/202208/20220829/GPL_AX55v1.tar.gz
+https://static.tp-link.com/upload/gpl-code/2022/202209/20220902/ArcherC5v_GPL.tar.gz
+https://static.tp-link.com/upload/gpl-code/2023/202301/20230113/GPL_AX72v1.tar.gz
+https://static.tp-link.com/upload/gpl-code/2023/202302/20230206/GPL_AX53v1.tar.gz
+https://static.tp-link.com/upload/gpl-code/2023/202305/20230516/ipq50xx_eap655_wall_v1.tar.gz
+https://static.tp-link.com/upload/gpl-code/2024/202403/20240328/FestaF65v1_GPL.tar.gz
+https://static.tp-link.com/upload/gpl-code/2024/202404/20240410/XE70ProV3_GPL.tar.gz
+https://static.tp-link.com/upload/gpl-code/2025/202509/20250922/HB810_GPL_CODE.tar.gz

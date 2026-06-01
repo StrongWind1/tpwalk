@@ -2,6 +2,8 @@
 
 **Discover, verify, and bulk-download every TP-Link GPL source release — from one command-line pipeline.**
 
+[![CI](https://github.com/StrongWind1/tpwalk/actions/workflows/ci.yml/badge.svg)](https://github.com/StrongWind1/tpwalk/actions/workflows/ci.yml)
+[![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue.svg)](https://strongwind1.github.io/tpwalk/)
 [![Python](https://img.shields.io/badge/python-3.14+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![CLI: Typer](https://img.shields.io/badge/CLI-Typer-blue.svg)](https://typer.tiangolo.com/)
@@ -11,6 +13,8 @@
 Under the GPL, TP-Link must publish the corresponding source code for the open-source components in its firmware. That source lives in an S3-backed bucket (`static.tp-link.com`) that serves every file without authentication but blocks directory listing — so there is no index, and files surface only on scattered regional support pages. tpwalk rebuilds the index: it discovers GPL archive URLs from nine independent sources, HEAD-checks each one against the S3 origin for live status and metadata, and emits a ready-to-run `s5cmd` manifest for mirroring the whole corpus. The same technique covers the Mercusys sub-brand (`static.mercusys.com`).
 
 This is a FOSS-compliance and archival tool. Every file it touches is source code a vendor is legally obligated to distribute and already serves publicly — see [Responsible use](#responsible-use).
+
+**[Read the full documentation →](https://strongwind1.github.io/tpwalk/)**
 
 ## Features
 

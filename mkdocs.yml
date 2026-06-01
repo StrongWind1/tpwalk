@@ -1,0 +1,84 @@
+site_name: tpwalk
+site_description: TP-Link GPL source URL discovery and verification.
+site_url: https://strongwind1.github.io/tpwalk/
+repo_url: https://github.com/StrongWind1/tpwalk
+repo_name: StrongWind1/tpwalk
+
+theme:
+  name: material
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # Dark mode (default) — respects system preference
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    # Light mode — respects system preference
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - Installation: getting-started/installation.md
+      - Quick start: getting-started/quick-start.md
+  - Commands:
+      - scrape: commands/scrape.md
+      - verify: commands/verify.md
+      - bruteforce: commands/bruteforce.md
+  - Guide:
+      - How it works: guide/how-it-works.md
+      - Responsible use: guide/responsible-use.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/StrongWind1/tpwalk
+      name: tpwalk on GitHub
+  generator: false
+
+strict: true

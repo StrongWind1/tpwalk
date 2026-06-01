@@ -60,3 +60,21 @@ def _instant_backoff_sleep(monkeypatch: pytest.MonkeyPatch) -> None:
         return None
 
     monkeypatch.setattr(asyncio, "sleep", _instant)
+
+
+@pytest.fixture(autouse=True)
+def _plain_cli_output(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Force Typer/Rich --help output to plain text so flag assertions are stable.
+
+    Typer renders --help through Rich. When the environment forces color (CI sets
+    ``FORCE_COLOR``), Rich emits ANSI escape codes that split option names like
+    ``--data-dir`` across escape sequences, so ``"--data-dir" in result.output``
+    fails even though the flag is present. ``NO_COLOR`` does not override
+    ``FORCE_COLOR``, but a dumb terminal does — we clear the color-forcing vars and
+    set ``TERM=dumb`` so the rendered help matches what a user sees through a plain
+    pipe, making the CLI help tests deterministic across local runs and CI.
+    """
+    monkeypatch.delenv("FORCE_COLOR", raising=False)
+    monkeypatch.delenv("FORCE_COLORS", raising=False)
+    monkeypatch.setenv("NO_COLOR", "1")
+    monkeypatch.setenv("TERM", "dumb")

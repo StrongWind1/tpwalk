@@ -99,16 +99,24 @@ _MIN_MODEL_LEN = 3
 # three parents up reaches the project root.
 _REF_GPL_DATA_ROOT = Path(__file__).parent.parent.parent / "ref_gpl_data"
 
+# Reference data bundled inside the package (tpwalk/_data/) so it ships in the wheel
+# and the installed console script resolves it regardless of cwd. Only the small,
+# stable corpus (gpl_urls_master.txt, ~100 KB) is bundled here; large volatile inputs
+# such as firmware_s3_listing.json (8.7 MB) stay user-supplied via the runner's
+# --firmware-listing path so they never bloat the distribution.
+_BUNDLED_DATA_ROOT = Path(__file__).parent.parent / "_data"
+
 
 def _resolve_ref_file(filename: str) -> Path | None:
-    """Resolve a filename inside ref_gpl_data/, trying cwd first then __file__-relative.
+    """Resolve a reference data filename: cwd, then repo root, then bundled package data.
 
-    Returns the first existing Path, or None if neither location has the file.
-    Using __file__-relative as the fallback ensures the installed tpwalk console
-    script finds the bundled reference data regardless of the operator's cwd.
+    Returns the first existing Path, or None if no location has the file. The
+    package-bundled fallback (tpwalk/_data/) ensures the installed tpwalk console
+    script finds the corpus regardless of the operator's cwd — without it, _ALL_PATTERNS
+    silently degrades to the D-05 canonical floor and the model strategy loses recall.
 
     Args:
-        filename: Relative path under ref_gpl_data/ (e.g. "gpl_urls_master.txt").
+        filename: Reference data filename (e.g. "gpl_urls_master.txt").
 
     Returns:
         Resolved Path if the file exists, else None.
@@ -120,6 +128,9 @@ def _resolve_ref_file(filename: str) -> Path | None:
     pkg_path = _REF_GPL_DATA_ROOT / filename
     if pkg_path.exists():
         return pkg_path
+    bundled_path = _BUNDLED_DATA_ROOT / filename
+    if bundled_path.exists():
+        return bundled_path
     return None
 
 

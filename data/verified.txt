@@ -1419,3 +1419,4 @@ s3://static.tp-link.com/upload/gpl-code/2026/202605/20260519/GPL_AX4400v3.tar.gz
 s3://static.tp-link.com/upload/gpl-code/2026/202605/20260520/GPL_AXE5400V2.tar.gz
 s3://static.tp-link.com/upload/gpl-code/2026/202605/20260526/ptz5425v1_gplcode.tar.gz
 s3://static.tp-link.com/upload/gpl-code/2026/202605/20260529/VB433v.tar.gz
+s3://static.tp-link.com/upload/gpl-code/2026/202606/20260602/XB432v_GPL.tar.gz

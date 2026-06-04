@@ -5,4 +5,6 @@ https://static.tp-link.com/resources/gpl/TL-MR6400_V1_GPL.tar.gz
 https://static.tp-link.com/resources/gpl/TL-R470T%2B(UN)6.0_GPL.tar.bz2
 https://static.tp-link.com/resources/gpl/TL-R480T%2B(UN)9.0_GPL.tar.bz2
 https://static.tp-link.com/upload/gpl-code/2024/202411/20241101/EX530v_turkcell_GPL.tar.gz
+https://static.tp-link.com/upload/gpl-code/2025/202502/20250220/EAP603Outdoorv1.tar
+https://static.tp-link.com/upload/gpl-code/2025/202502/20250220/vigi_EasyCam_c320v1_gplcode.tar
 https://static.tp-link.com/us/resources/gpl/GPL_ArcherC2v1.tar.gz

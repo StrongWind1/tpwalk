@@ -3,48 +3,60 @@
     "url": "https://static.tp-link.com/GPL/TL-WR1043N_v1.tar.gz",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.777120+00:00"
+    "checked_at": "2026-06-04T06:24:37.097852+00:00"
   },
   {
     "url": "https://static.tp-link.com/resources/GPL/mr3420_3220v1.tar.gz",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.777188+00:00"
+    "checked_at": "2026-06-04T06:24:37.095758+00:00"
   },
   {
     "url": "https://static.tp-link.com/resources/gpl/150Router.tar.gz",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.780659+00:00"
+    "checked_at": "2026-06-04T06:24:37.100059+00:00"
   },
   {
     "url": "https://static.tp-link.com/resources/gpl/TL-MR6400_V1_GPL.tar.gz",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.778928+00:00"
+    "checked_at": "2026-06-04T06:24:37.095799+00:00"
   },
   {
     "url": "https://static.tp-link.com/resources/gpl/TL-R470T%2B(UN)6.0_GPL.tar.bz2",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.780322+00:00"
+    "checked_at": "2026-06-04T06:24:37.098027+00:00"
   },
   {
     "url": "https://static.tp-link.com/resources/gpl/TL-R480T%2B(UN)9.0_GPL.tar.bz2",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.777420+00:00"
+    "checked_at": "2026-06-04T06:24:37.097885+00:00"
   },
   {
     "url": "https://static.tp-link.com/upload/gpl-code/2024/202411/20241101/EX530v_turkcell_GPL.tar.gz",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.778904+00:00"
+    "checked_at": "2026-06-04T06:24:37.098644+00:00"
+  },
+  {
+    "url": "https://static.tp-link.com/upload/gpl-code/2025/202502/20250220/EAP603Outdoorv1.tar",
+    "status": 403,
+    "error_type": "http",
+    "checked_at": "2026-06-04T06:24:37.100139+00:00"
+  },
+  {
+    "url": "https://static.tp-link.com/upload/gpl-code/2025/202502/20250220/vigi_EasyCam_c320v1_gplcode.tar",
+    "status": 403,
+    "error_type": "http",
+    "checked_at": "2026-06-04T06:24:37.099932+00:00"
   },
   {
     "url": "https://static.tp-link.com/us/resources/gpl/GPL_ArcherC2v1.tar.gz",
     "status": 403,
     "error_type": "http",
-    "checked_at": "2026-06-01T17:37:38.778585+00:00"
+    "checked_at": "2026-06-04T06:24:37.097479+00:00"
   }
 ]

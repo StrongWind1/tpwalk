@@ -1419,3 +1419,4 @@ cp --if-size-differ 's3://static.tp-link.com/upload/gpl-code/2026/202605/2026051
 cp --if-size-differ 's3://static.tp-link.com/upload/gpl-code/2026/202605/20260520/GPL_AXE5400V2.tar.gz' 'gpl/static.tp-link.com/upload/gpl-code/2026/202605/20260520/GPL_AXE5400V2.tar.gz'
 cp --if-size-differ 's3://static.tp-link.com/upload/gpl-code/2026/202605/20260526/ptz5425v1_gplcode.tar.gz' 'gpl/static.tp-link.com/upload/gpl-code/2026/202605/20260526/ptz5425v1_gplcode.tar.gz'
 cp --if-size-differ 's3://static.tp-link.com/upload/gpl-code/2026/202605/20260529/VB433v.tar.gz' 'gpl/static.tp-link.com/upload/gpl-code/2026/202605/20260529/VB433v.tar.gz'
+cp --if-size-differ 's3://static.tp-link.com/upload/gpl-code/2026/202606/20260602/XB432v_GPL.tar.gz' 'gpl/static.tp-link.com/upload/gpl-code/2026/202606/20260602/XB432v_GPL.tar.gz'

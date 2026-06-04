@@ -1,6 +1,6 @@
 """Model-name candidate generator for the brute-force model strategy.
 
-Model tokens are extracted at runtime from ref_gpl_data/firmware_s3_listing.json
+Model tokens are extracted at runtime from data/firmware_s3_listing.json
 with a recall-favoring heuristic — over-inclusive is correct because 404s are free
 (D-06). The firmware listing is a JSON array of {key, size, modified} objects (NOT
 a flat list of strings); load_firmware_keys extracts entry["key"] from each dict.
@@ -8,7 +8,7 @@ a flat list of strings); load_firmware_keys extracts entry["key"] from each dict
 The candidate filename-pattern set is the UNION of:
   - D-05 canonical templates: GPL_{model}, {model}_GPL, {model}_gpl
   - D-04 empirically-mined shapes derived from the 1,283 known basenames in
-    ref_gpl_data/gpl_urls_master.txt (dash/underscore/glued separators, prefix/suffix
+    data/scrapes/seed/gpl_urls_master.txt (dash/underscore/glued separators, prefix/suffix
     position, GPL/gpl case, _src/_code/_OpenSource suffix tokens, gpl-less bare model)
 
 The model dimension is ORTHOGONAL to the date dimension (D-01): iter_model_candidates
@@ -91,52 +91,42 @@ _CANONICAL_PATTERNS: tuple[str, ...] = ("GPL_{model}", "{model}_GPL", "{model}_g
 # Minimum length for a valid model name token (avoids 1-2 char noise tokens).
 _MIN_MODEL_LEN = 3
 
-# --- Shared ref_gpl_data resolver ---
-# Resolves a ref_gpl_data filename by trying cwd first, then __file__-relative so
-# behavior is identical regardless of the working directory the process was started
-# from (WR-02: installed console-script users are NOT at project root).
-# The __file__-relative path: _models.py lives at tpwalk/bruteforce/_models.py, so
-# three parents up reaches the project root.
-_REF_GPL_DATA_ROOT = Path(__file__).parent.parent.parent / "ref_gpl_data"
-
-# Reference data bundled inside the package (tpwalk/_data/) so it ships in the wheel
-# and the installed console script resolves it regardless of cwd. Only the small,
-# stable corpus (gpl_urls_master.txt, ~100 KB) is bundled here; large volatile inputs
-# such as firmware_s3_listing.json (8.7 MB) stay user-supplied via the runner's
-# --firmware-listing path so they never bloat the distribution.
-_BUNDLED_DATA_ROOT = Path(__file__).parent.parent / "_data"
+# --- Shared data/ reference-file resolver ---
+# Resolves a path under data/ by trying cwd first, then __file__-relative to the repo
+# root, so behavior is identical regardless of the working directory the process was
+# started from (WR-02: a console-script user is NOT necessarily at project root).
+# _models.py lives at tpwalk/bruteforce/_models.py, so three parents up reaches the
+# project root that contains data/.
+_DATA_ROOT = Path(__file__).parent.parent.parent / "data"
 
 
-def _resolve_ref_file(filename: str) -> Path | None:
-    """Resolve a reference data filename: cwd, then repo root, then bundled package data.
+def _resolve_data_file(relpath: str) -> Path | None:
+    """Resolve a file under data/ by relative path: cwd-relative first, then repo-root-relative.
 
-    Returns the first existing Path, or None if no location has the file. The
-    package-bundled fallback (tpwalk/_data/) ensures the installed tpwalk console
-    script finds the corpus regardless of the operator's cwd — without it, _ALL_PATTERNS
-    silently degrades to the D-05 canonical floor and the model strategy loses recall.
+    Returns the first existing Path, or None if neither location has the file. The
+    repo-root fallback keeps resolution cwd-independent — without it, _ALL_PATTERNS
+    silently degrades to the D-05 canonical floor and the model strategy loses recall
+    whenever tpwalk is invoked from outside the project root (WR-02).
 
     Args:
-        filename: Reference data filename (e.g. "gpl_urls_master.txt").
+        relpath: Path relative to data/ (e.g. "scrapes/seed/gpl_urls_master.txt").
 
     Returns:
         Resolved Path if the file exists, else None.
 
     """
-    cwd_path = Path("ref_gpl_data") / filename
+    cwd_path = Path("data") / relpath
     if cwd_path.exists():
         return cwd_path
-    pkg_path = _REF_GPL_DATA_ROOT / filename
-    if pkg_path.exists():
-        return pkg_path
-    bundled_path = _BUNDLED_DATA_ROOT / filename
-    if bundled_path.exists():
-        return bundled_path
+    root_path = _DATA_ROOT / relpath
+    if root_path.exists():
+        return root_path
     return None
 
 
-# --- Default corpus path for _ALL_PATTERNS computation ---
-# Resolved lazily in _get_all_patterns() rather than at import time (WR-02).
-_DEFAULT_CORPUS_FILENAME = "gpl_urls_master.txt"
+# --- Default corpus path for _ALL_PATTERNS computation (relative to data/) ---
+# The GPL URL corpus doubles as the verify seed, so it lives at data/scrapes/seed/.
+_DEFAULT_CORPUS_RELPATH = "scrapes/seed/gpl_urls_master.txt"
 
 
 # --- Public functions ---
@@ -148,7 +138,7 @@ def load_firmware_keys(*, listing_path: Path) -> list[str]:
     The listing is a JSON array of {key, size, modified} dicts (NOT a flat
     list of strings). This function extracts the "key" field from each dict.
 
-    CRITICAL DATA SHAPE: ref_gpl_data/firmware_s3_listing.json contains
+    CRITICAL DATA SHAPE: data/firmware_s3_listing.json contains
     53,857 entries as [{"key": "...", "size": N, "modified": "..."}, ...].
     Returning the raw data would return a list of dicts — this function maps
     entry["key"] out of each dict and returns a plain list[str].
@@ -239,7 +229,7 @@ def extract_firmware_models(fw_s3_keys: list[str]) -> set[str]:
 def load_known_basenames(*, corpus_path: Path) -> list[str]:
     """Load and decode the known GPL URL corpus into a list of basenames.
 
-    The corpus file (ref_gpl_data/gpl_urls_master.txt) contains 1,283 full
+    The corpus file (data/scrapes/seed/gpl_urls_master.txt) contains 1,283 full
     HTTPS URLs, one per line. 49 of those URLs have percent-encoded basenames
     (e.g. Archer%20A10%28US%292.0-GPL.tar.gz) — these are decoded via stdlib
     unquote so the shape-mining in derive_corpus_patterns sees the real characters.
@@ -365,26 +355,26 @@ def derive_corpus_patterns(basenames: list[str]) -> set[str]:
 
 
 # --- Module-level D-04 + D-05 pattern union ---
-# Computed at import time via _resolve_ref_file() which tries cwd then __file__-relative,
+# Computed at import time via _resolve_data_file() which tries cwd then repo-root-relative,
 # so the result is correct regardless of the operator's cwd (WR-02 fix: the old code used
 # a bare relative Path that only worked when cwd == project root).
-# Wrapped in try/except so import never crashes if ref_gpl_data/ is absent.
+# Wrapped in try/except so import never crashes if the corpus is absent.
 # Per D-04 (empirical corpus patterns), D-05 (canonical floor).
 
-_corpus_path_for_patterns = _resolve_ref_file(_DEFAULT_CORPUS_FILENAME)
+_corpus_path_for_patterns = _resolve_data_file(_DEFAULT_CORPUS_RELPATH)
 if _corpus_path_for_patterns is not None:
     try:
         _ALL_PATTERNS: tuple[str, ...] = tuple(sorted(derive_corpus_patterns(load_known_basenames(corpus_path=_corpus_path_for_patterns))))
     except OSError, ValueError:
         _log.warning(
-            "ref_gpl_data/%s malformed — falling back to D-05 canonical patterns only (recall reduced).",
-            _DEFAULT_CORPUS_FILENAME,
+            "data/%s malformed — falling back to D-05 canonical patterns only (recall reduced).",
+            _DEFAULT_CORPUS_RELPATH,
         )
         _ALL_PATTERNS = tuple(sorted(_CANONICAL_PATTERNS))
 else:
     _log.warning(
-        "ref_gpl_data/%s not found — falling back to D-05 canonical patterns only (recall reduced). Place the corpus file in ref_gpl_data/ to restore D-04 empirical shapes.",
-        _DEFAULT_CORPUS_FILENAME,
+        "data/%s not found — falling back to D-05 canonical patterns only (recall reduced). Place the GPL URL corpus there to restore D-04 empirical shapes.",
+        _DEFAULT_CORPUS_RELPATH,
     )
     _ALL_PATTERNS = tuple(sorted(_CANONICAL_PATTERNS))
 

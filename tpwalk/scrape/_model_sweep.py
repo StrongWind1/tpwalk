@@ -11,10 +11,10 @@ across every live region, surfacing GPL archives the tree-driven crawl never ask
 Model-name sources (unioned -- phppage is the oracle, so over-generating only costs
 a wasted probe request):
 
-* Firmware S3 listing (``ref_gpl_data/firmware_s3_listing.json``): ~52k firmware
+* Firmware S3 listing (``data/firmware_s3_listing.json``): ~52k firmware
   keys normalized to base model tokens (+ brand-prefix variants, since firmware
   drops the brand: ``AX21`` -> ``Archer AX21``).
-* Known GPL archive filenames (``ref_gpl_data/gpl_urls_master.txt``): closer to
+* Known GPL archive filenames (``data/scrapes/seed/gpl_urls_master.txt``): closer to
   canonical names, and multi-model tarballs reveal siblings (``EAP610v4_EAP613v2``
   -> EAP610, EAP613).
 * Live ``?model=`` harvest: every region's gpl-code page links models via phppage
@@ -59,8 +59,8 @@ _log = logging.getLogger(__name__)
 
 # --- Configuration ---
 
-_DEFAULT_FIRMWARE_JSON = Path("ref_gpl_data/firmware_s3_listing.json")
-_DEFAULT_GPL_URLS = Path("ref_gpl_data/gpl_urls_master.txt")
+_DEFAULT_FIRMWARE_JSON = Path("data/firmware_s3_listing.json")
+_DEFAULT_GPL_URLS = Path("data/scrapes/seed/gpl_urls_master.txt")
 
 # Probe regions: the largest, most diverse productTrees (verified item counts:
 # us=393, de=261, fr=246, in=76, br=73, jp=39). A model's "home" region is almost

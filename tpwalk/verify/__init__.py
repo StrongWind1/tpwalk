@@ -136,6 +136,16 @@ class VerifyRunner:
         data = self._data_dir
         data.mkdir(parents=True, exist_ok=True)
 
+        # HEAD checks complete in non-deterministic order — head_check_all runs a
+        # TaskGroup over a set, so both completion order and set iteration order vary
+        # run-to-run. Sort both result lists by URL once here so every derived output
+        # below is byte-stable: the same discovered set produces identical files each
+        # run, so `git add` shows only real additions/removals instead of the whole
+        # file reshuffling. (s5cmd_download.txt was already sorted; the other four
+        # inherit this order.) Per VERF-06 (diff-friendly, deterministic output).
+        verified = sorted(verified, key=lambda v: v.url)
+        dead = sorted(dead, key=lambda d: d.url)
+
         # verified.json — flat array of D-06 field dicts
         data.joinpath("verified.json").write_text(
             json.dumps([dataclasses.asdict(v) for v in verified], indent=2),

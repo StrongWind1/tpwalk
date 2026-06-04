@@ -253,20 +253,20 @@ def test_iter_model_candidates_exhaustive_date_cross() -> None:
 def test_all_patterns_has_minimum_count_from_real_corpus() -> None:
     """_ALL_PATTERNS yields >= 20 patterns when the real corpus is present (WR-02 / D-04).
 
-    This pins the recall floor: if _resolve_ref_file cannot find the corpus, the
+    This pins the recall floor: if _resolve_data_file cannot find the corpus, the
     module falls back to 3 D-05 canonical patterns.  With the real corpus present,
     the empirical shape mining always produces more than 20.
 
-    If this test runs without the real ref_gpl_data/ corpus (e.g., in a stripped
+    If this test runs without the real data/ corpus (e.g., in a stripped
     Docker image), it verifies at least the canonical floor of 3.  The >= 20
     assertion is the meaningful guard — it catches the WR-02 regression where
     running from a non-project-root cwd silently degraded to 3 patterns.
     """
     from pathlib import Path
 
-    from tpwalk.bruteforce._models import _ALL_PATTERNS, _resolve_ref_file
+    from tpwalk.bruteforce._models import _ALL_PATTERNS, _resolve_data_file
 
-    corpus_path = _resolve_ref_file("gpl_urls_master.txt")
+    corpus_path = _resolve_data_file("scrapes/seed/gpl_urls_master.txt")
     if corpus_path is not None and Path(corpus_path).exists():
         assert len(_ALL_PATTERNS) >= 20, f"Expected >= 20 corpus-mined patterns with real corpus present, got {len(_ALL_PATTERNS)}. This likely means _ALL_PATTERNS was computed with cwd != project root (WR-02 regression)."
     else:
@@ -274,11 +274,11 @@ def test_all_patterns_has_minimum_count_from_real_corpus() -> None:
         assert len(_ALL_PATTERNS) == 3, f"Expected 3 canonical patterns when corpus absent, got {len(_ALL_PATTERNS)}"
 
 
-def test_resolve_ref_file_finds_corpus_independent_of_cwd(tmp_path: Path) -> None:
-    """_resolve_ref_file locates ref_gpl_data/ via __file__-relative path regardless of cwd (WR-02).
+def test_resolve_data_file_finds_corpus_independent_of_cwd(tmp_path: Path) -> None:
+    """_resolve_data_file locates the corpus under data/ via repo-root-relative path regardless of cwd (WR-02).
 
-    We change the process cwd to a temp dir that has NO ref_gpl_data/ subdirectory
-    and verify that _resolve_ref_file still resolves the real corpus file via the
+    We change the process cwd to a temp dir that has NO data/ subdirectory
+    and verify that _resolve_data_file still resolves the real corpus file via the
     __file__ fallback (or returns None if the corpus is absent from the environment).
 
     This pins the fix for WR-02: before the fix, _DEFAULT_CORPUS_PATH was a bare
@@ -287,24 +287,24 @@ def test_resolve_ref_file_finds_corpus_independent_of_cwd(tmp_path: Path) -> Non
     """
     import os
 
-    from tpwalk.bruteforce._models import _resolve_ref_file
+    from tpwalk.bruteforce._models import _resolve_data_file
 
-    # tmp_path is a fresh empty directory with NO ref_gpl_data/ subdirectory.
+    # tmp_path is a fresh empty directory with NO data/ subdirectory.
     orig_cwd = Path.cwd()
     try:
-        os.chdir(tmp_path)  # cwd is now a temp dir with no ref_gpl_data/
+        os.chdir(tmp_path)  # cwd is now a temp dir with no data/
 
         # Verify the cwd-relative path does NOT exist (sanity check).
-        cwd_corpus = Path("ref_gpl_data/gpl_urls_master.txt")
-        assert not cwd_corpus.exists(), "tmp_path unexpectedly has ref_gpl_data/ (test setup error)"
+        cwd_corpus = Path("data/scrapes/seed/gpl_urls_master.txt")
+        assert not cwd_corpus.exists(), "tmp_path unexpectedly has data/ (test setup error)"
 
-        result = _resolve_ref_file("gpl_urls_master.txt")
+        result = _resolve_data_file("scrapes/seed/gpl_urls_master.txt")
         # If the __file__-relative corpus exists (normal dev environment), result must be
         # the __file__-relative resolved path, NOT a cwd-relative path (which doesn't exist).
         # If the corpus is absent from both locations, None is acceptable.
         if result is not None:
             # The result must be an absolute resolved path that actually exists.
-            assert result.exists(), f"_resolve_ref_file returned a non-existent path: {result}"
+            assert result.exists(), f"_resolve_data_file returned a non-existent path: {result}"
             # The result must NOT be the cwd-relative path (which we verified doesn't exist).
             assert result.is_absolute(), f"Expected absolute path, got relative: {result}"
     finally:

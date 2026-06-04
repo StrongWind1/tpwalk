@@ -2,7 +2,7 @@
 
 All HTTP is mocked via httpx.MockTransport; regions are injected so discover_regions
 is never called. gpl_urls is pointed at a nonexistent path to isolate from the real
-ref_gpl_data file and keep the mocked sweep small/fast.
+data/ reference file and keep the mocked sweep small/fast.
 """
 
 from __future__ import annotations

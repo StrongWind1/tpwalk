@@ -35,7 +35,7 @@ from tpwalk._client import build_client
 from tpwalk._normalize import url_normalize
 from tpwalk.bruteforce._dates import _BASE_DATE, iter_date_candidates, iter_date_paths
 from tpwalk.bruteforce._head import exists_url
-from tpwalk.bruteforce._models import _resolve_ref_file, extract_firmware_models, iter_model_candidates, load_firmware_keys
+from tpwalk.bruteforce._models import _resolve_data_file, extract_firmware_models, iter_model_candidates, load_firmware_keys
 from tpwalk.models import BruteforceStats
 
 if TYPE_CHECKING:
@@ -76,7 +76,7 @@ class BruteforceRunner:
         self,
         *,
         data_dir: str = "data",
-        firmware_listing: str = "ref_gpl_data/firmware_s3_listing.json",
+        firmware_listing: str = "data/firmware_s3_listing.json",
         concurrency: int = 100,
         strategy: str = "all",
         thorough: bool = False,
@@ -119,7 +119,7 @@ class BruteforceRunner:
     def _load_known_basenames_and_date_dirs(self) -> tuple[set[str], list[str]]:
         """Extract known GPL basenames and known date-path prefixes from gpl_urls_master.txt.
 
-        Reads ref_gpl_data/gpl_urls_master.txt (one full HTTPS URL per line) and:
+        Reads data/scrapes/seed/gpl_urls_master.txt (one full HTTPS URL per line) and:
         1. Extracts the basename (last path segment) of each URL into a set.
         2. Parses any /upload/gpl-code/YYYY/YYYYMM/YYYYMMDD/ or
            /YYYY/YYYYMM/YYYYMMDD/ segment into the known-date-dirs set,
@@ -138,17 +138,8 @@ class BruteforceRunner:
             known_date_dirs is sorted for deterministic output.
 
         """
-        # Resolve the corpus path -- try relative to cwd first, then project root heuristic
-        corpus_candidates = [
-            Path("ref_gpl_data/gpl_urls_master.txt"),
-            Path(__file__).parent.parent.parent / "ref_gpl_data" / "gpl_urls_master.txt",
-        ]
-        corpus_path: Path | None = None
-        for candidate in corpus_candidates:
-            if candidate.exists():
-                corpus_path = candidate
-                break
-
+        # Resolve the corpus path under data/ (cwd-relative first, then repo-root).
+        corpus_path = _resolve_data_file("scrapes/seed/gpl_urls_master.txt")
         if corpus_path is None:
             _log.warning("gpl_urls_master.txt not found -- known basenames and date dirs unavailable; date strategy may produce zero candidates (recall degraded).")
             return set(), []
@@ -353,7 +344,7 @@ class BruteforceRunner:
             # so an installed console-script user doesn't need to be in the project root (WR-02).
             firmware_path = Path(self._firmware_listing)
             if not firmware_path.exists():  # noqa: ASYNC240 -- sync FS check in async context is intentional (httpx-based, not trio/anyio)
-                resolved = _resolve_ref_file(firmware_path.name)
+                resolved = _resolve_data_file(firmware_path.name)
                 if resolved is not None:
                     firmware_path = resolved
             fw_keys = load_firmware_keys(listing_path=firmware_path)

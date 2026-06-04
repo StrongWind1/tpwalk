@@ -6,7 +6,7 @@
   <a href="https://github.com/StrongWind1/tpwalk/actions/workflows/ci.yml"><img src="https://github.com/StrongWind1/tpwalk/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://strongwind1.github.io/tpwalk/"><img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Docs"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.14+-blue.svg" alt="Python 3.14+"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License: Apache 2.0"></a>
   <a href="https://typer.tiangolo.com/"><img src="https://img.shields.io/badge/CLI-Typer-blue.svg" alt="CLI: Typer"></a>
   <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/badge/code%20style-ruff-261230.svg" alt="Ruff"></a>
   <a href="https://github.com/astral-sh/ty"><img src="https://img.shields.io/badge/types-ty-261230.svg" alt="ty"></a>
@@ -179,7 +179,7 @@ tpwalk/
 ├── verify/             # read -> dedupe -> HEAD-check -> write the five output files
 └── bruteforce/         # active date-path / model-name enumeration
 tests/                  # pytest suite (mocked HTTP, no live network)
-data/                   # discovered URLs (scrapes/, incl. curated seed/) and verify output
+data/                   # scrapes/ (discovered URLs incl. curated seed/), verify output, firmware_s3_listing.json
 ```
 
 ## Development
@@ -203,4 +203,4 @@ That said, be a good neighbor: keep `--concurrency` reasonable, prefer the passi
 
 ## License
 
-[MIT](LICENSE)
+[Apache License 2.0](LICENSE)

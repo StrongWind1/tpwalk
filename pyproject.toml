@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "TP-Link GPL source and firmware URL scraper, verifier, and downloader"
 readme = "README.md"
 requires-python = ">=3.14"
-license = "MIT"
+license = "Apache-2.0"
 dependencies = [
     "httpx[http2]",
     "beautifulsoup4",

@@ -27,8 +27,8 @@ tpwalk bruteforce [OPTIONS]
 - **`models`** — crosses extracted firmware model names with the empirical GPL filename patterns mined from the known corpus.
 - **`all`** — runs both.
 
-!!! note "Model strategy needs the firmware listing"
-    The model strategy extracts model tokens from `firmware_s3_listing.json` (an 8.7 MB index that is **not** bundled with the distribution). Without it the model strategy produces zero candidates. The small GPL filename-pattern corpus *is* bundled, so the date strategy and the pattern set work out of the box.
+!!! note "Reference data lives under `data/`"
+    The model strategy extracts model tokens from `data/firmware_s3_listing.json` (an 8.7 MB S3 index) and mines filename patterns from the GPL corpus at `data/scrapes/seed/gpl_urls_master.txt`. Both are committed to the repository, so a cloned checkout works out of the box. Neither is included in the installed wheel, so run `bruteforce` from a checkout — or place those files under `data/` — for full recall; without them the model strategy produces no candidates and the date strategy falls back to bare date-path enumeration.
 
 ## Examples
 

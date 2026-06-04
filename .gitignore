@@ -256,5 +256,3 @@ __marimo__/
 
 # --------------- Custom ------------------
 ref_docs/
-# Firmware S3 listing (~8.7 MB) is user-supplied and too large/volatile to commit.
-data/firmware_s3_listing.json

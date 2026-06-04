@@ -161,7 +161,7 @@ def test_derive_corpus_patterns_canonical_floor_on_empty() -> None:
 
 
 def test_derive_corpus_patterns_deterministic() -> None:
-    """Two calls on the same input return equal sets (no randomness, project conventions)."""
+    """Two calls on the same input return equal sets (deterministic, no randomness)."""
     from tpwalk.bruteforce._models import derive_corpus_patterns
 
     inputs = ["1201-gpl.tar.gz", "MR500V1_gpl_src.tar.gz", "GPL_Foo.tar.gz", "840v5.tar.gz"]

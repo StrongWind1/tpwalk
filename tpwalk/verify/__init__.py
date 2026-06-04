@@ -46,7 +46,7 @@ class VerifyRunner:
         Args:
             data_dir: Root data directory. scrapes/ subdirectory is read from here.
                 Output files (verified.json etc.) are written to this directory.
-                Keyword-only per project conventions convention for >3-param functions.
+                Keyword-only per project convention for >3-param functions.
             concurrency: Maximum concurrent HEAD requests to S3 origin.
                 S3 imposes no rate limit; 100 is a safe default for most systems.
 

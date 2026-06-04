@@ -265,7 +265,7 @@ def derive_corpus_patterns(basenames: list[str]) -> set[str]:
     basename according to the observed shape (GPL-token position prefix/suffix/absent,
     adjacent separator _, -, or none/glued, case of the gpl token, recognized trailing
     suffix tokens). Each emitted shape is traceable to at least one real basename in
-    the 1,283-URL corpus — no heuristic guessing (project conventions).
+    the 1,283-URL corpus — no heuristic guessing.
 
     The D-05 canonical templates are always seeded first as the guaranteed floor so
     the generator never regresses below D-05 even when the corpus file is absent.

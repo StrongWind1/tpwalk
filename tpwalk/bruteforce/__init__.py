@@ -86,7 +86,7 @@ class BruteforceRunner:
     ) -> None:
         """Configure the brute-force runner.
 
-        All parameters are keyword-only (project conventions: keyword-only for 3+ params).
+        All parameters are keyword-only (project convention for 3+ params).
 
         Tier precedence: exhaustive wins if both thorough and exhaustive are True.
         Tiers per D-02:

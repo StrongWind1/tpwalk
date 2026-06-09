@@ -107,7 +107,7 @@ _GPL_EXTENSIONS: tuple[str, ...] = (".tar.gz", ".tar.bz2", ".tar.xz", ".tar", ".
 # --- Pure extraction functions ---
 
 
-def _extract_product_tree(html: str) -> dict[str, list[dict]] | None:  # type: ignore[type-arg]
+def _extract_product_tree(html: str) -> dict[str, list[dict[str, str]]] | None:
     """Extract productTree embedded JSON from TP-Link regional GPL page HTML.
 
     productTree is assigned as a JavaScript variable in a <script> tag:
@@ -148,7 +148,7 @@ def _extract_product_tree(html: str) -> dict[str, list[dict]] | None:  # type: i
             depth -= 1
             if depth == 0:
                 try:
-                    return json.loads(raw[: i + 1])  # type: ignore[no-any-return]
+                    return json.loads(raw[: i + 1])
                 except json.JSONDecodeError as e:
                     _log.warning("productTree JSON parse failed: %s", e)
                     return None
@@ -158,7 +158,7 @@ def _extract_product_tree(html: str) -> dict[str, list[dict]] | None:  # type: i
 
 
 def _classify_tree_items(
-    tree: dict[str, list[dict]],  # type: ignore[type-arg]
+    tree: dict[str, list[dict[str, str]]],
 ) -> tuple[list[str], list[tuple[str, str]]]:
     """Split productTree items into direct URLs and phppage (model, region) pairs.
 

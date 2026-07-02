@@ -349,7 +349,7 @@ class BruteforceRunner:
                     firmware_path = resolved
             fw_keys = load_firmware_keys(listing_path=firmware_path)
             models = extract_firmware_models(fw_keys)
-        except OSError, ValueError:
+        except (OSError, ValueError):
             _log.warning(
                 "firmware_s3_listing.json not found or malformed at %s -- model strategy will produce zero candidates.",
                 self._firmware_listing,

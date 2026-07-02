@@ -278,7 +278,7 @@ class ModelSweepSource:
                 await asyncio.sleep(random.uniform(_JITTER_MIN_S, _JITTER_MAX_S))  # noqa: S311 -- jitter, not cryptographic
                 try:
                     r = await ctx.client.get(GPL_PAGE_TEMPLATE.format(region=region), follow_redirects=True)
-                except httpx.TimeoutException, httpx.RequestError:
+                except (httpx.TimeoutException, httpx.RequestError):
                     return
             if r.status_code == httpx.codes.OK:
                 models.update(m.strip() for m in _MODEL_RE.findall(r.text) if _keep(m.strip()))
@@ -340,7 +340,7 @@ class ModelSweepSource:
                     params={"model": model, "appPath": region},
                     headers={"Referer": f"https://www.tp-link.com/{region}/support/gpl-code/"},
                 )
-            except httpx.TimeoutException, httpx.RequestError:
+            except (httpx.TimeoutException, httpx.RequestError):
                 return set()
         if r.status_code != httpx.codes.OK:
             return set()

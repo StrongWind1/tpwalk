@@ -1,6 +1,6 @@
 # Installation
 
-tpwalk requires **Python 3.14+** and is installed from source with [uv](https://docs.astral.sh/uv/).
+tpwalk requires **Python 3.11+** and is installed from source with [uv](https://docs.astral.sh/uv/).
 
 ## Install the CLI
 

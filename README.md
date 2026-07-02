@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/StrongWind1/tpwalk/actions/workflows/ci.yml"><img src="https://github.com/StrongWind1/tpwalk/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.14+-blue.svg" alt="Python 3.14+"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.11+-blue.svg" alt="Python 3.11+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License: Apache 2.0"></a>
   <a href="https://strongwind1.github.io/tpwalk/"><img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Docs"></a>
 </p>
@@ -58,7 +58,7 @@ $ s5cmd --no-sign-request run data/s5cmd_download.txt   # download everything
 
 ## Installation
 
-tpwalk requires **Python 3.14+**. Install with [uv](https://docs.astral.sh/uv/):
+tpwalk requires **Python 3.11+**. Install with [uv](https://docs.astral.sh/uv/):
 
 ```bash
 uv tool install git+https://github.com/StrongWind1/tpwalk

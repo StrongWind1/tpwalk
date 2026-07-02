@@ -238,7 +238,7 @@ class CommonCrawlSource:
 
         try:
             data = response.json()
-        except json.JSONDecodeError, ValueError:
+        except (json.JSONDecodeError, ValueError):
             _log.error("Common Crawl: malformed collinfo.json response")
             return []
 
@@ -298,7 +298,7 @@ class CommonCrawlSource:
 
         try:
             page_info = response.json()
-        except json.JSONDecodeError, ValueError:
+        except (json.JSONDecodeError, ValueError):
             _log.debug("CC index %s: malformed showNumPages response for %s", cdx_api, url_prefix)
             return urls
 

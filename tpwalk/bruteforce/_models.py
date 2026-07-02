@@ -365,7 +365,7 @@ _corpus_path_for_patterns = _resolve_data_file(_DEFAULT_CORPUS_RELPATH)
 if _corpus_path_for_patterns is not None:
     try:
         _ALL_PATTERNS: tuple[str, ...] = tuple(sorted(derive_corpus_patterns(load_known_basenames(corpus_path=_corpus_path_for_patterns))))
-    except OSError, ValueError:
+    except (OSError, ValueError):
         _log.warning(
             "data/%s malformed — falling back to D-05 canonical patterns only (recall reduced).",
             _DEFAULT_CORPUS_RELPATH,

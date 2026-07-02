@@ -573,7 +573,7 @@ class RegionalSource:
                         params={"model": model, "appPath": region},
                         headers={"Referer": f"https://www.tp-link.com/{region}/support/gpl-code/"},
                     )
-                except httpx.TimeoutException, httpx.RequestError:
+                except (httpx.TimeoutException, httpx.RequestError):
                     _update_progress(progress, task_id)
                     return
 

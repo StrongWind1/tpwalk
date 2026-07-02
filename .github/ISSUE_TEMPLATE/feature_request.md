@@ -10,7 +10,7 @@ assignees: ""
 A clear description of the problem or use case.
 
 **Proposed solution**
-How you'd like tpwalk to handle it (CLI flags, a new discovery source, output format, etc.).
+How you'd like tpwalk to handle it (CLI flags, output format, etc.).
 
 **Alternatives considered**
-Any workarounds you've tried or other approaches.
+Any workarounds you've tried or other tools that handle this.

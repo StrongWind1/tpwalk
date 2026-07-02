@@ -3,7 +3,7 @@ name = "tpwalk"
 version = "0.1.0"
 description = "TP-Link GPL source and firmware URL scraper, verifier, and downloader"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.11,<3.15"
 license = "Apache-2.0"
 dependencies = [
     "httpx[http2]",
@@ -37,7 +37,7 @@ packages = ["tpwalk"]
 testpaths = ["tests"]
 
 [tool.ruff]
-target-version = "py314"
+target-version = "py311"
 line-length = 320
 
 [tool.ruff.lint]
@@ -53,7 +53,7 @@ ignore = [
 "tests/**" = ["ALL"]
 
 [tool.ty.environment]
-python-version = "3.14"
+python-version = "3.11"
 
 [tool.ty.rules]
 all = "error"

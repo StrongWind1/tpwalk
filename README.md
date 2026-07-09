@@ -59,9 +59,16 @@ $ s5cmd --no-sign-request run data/s5cmd_download.txt   # download everything
 
 ## Installation
 
-tpwalk requires **Python 3.11+**. Install with [uv](https://docs.astral.sh/uv/):
+tpwalk requires **Python 3.11+**. Install from [PyPI](https://pypi.org/project/tpwalk/):
 
-```bash
+```sh
+uv tool install tpwalk        # recommended
+pip install tpwalk             # or with pip
+```
+
+Or install from source:
+
+```sh
 uv tool install git+https://github.com/StrongWind1/tpwalk
 ```
 

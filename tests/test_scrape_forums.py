@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape._forums -- ForumSource: OpenWrt Discourse JSON + Google site: dorks.
 
 Tests use httpx.MockTransport so no real network requests are made. The handler

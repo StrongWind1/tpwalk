@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk/scrape/_github.py -- GitHubSearchSource and TPLinkGitHubSource.
 
 All tests use httpx.MockTransport; no real network calls are ever made.

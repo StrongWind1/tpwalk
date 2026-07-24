@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Wayback CDX API source for the tpwalk scrape pipeline.
 
 Queries web.archive.org/cdx/search/cdx across multiple URL prefixes

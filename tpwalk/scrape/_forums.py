@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Community-forums source for the tpwalk scrape pipeline.
 
 Implements a dual-path discovery strategy for GPL archive URLs mentioned on

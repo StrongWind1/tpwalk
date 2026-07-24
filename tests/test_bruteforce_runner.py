@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Integration tests for tpwalk.bruteforce.BruteforceRunner.
 
 Tests verify the orchestration slice: run-dir creation, per-strategy file

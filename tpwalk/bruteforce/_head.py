@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Existence-only HEAD filter for brute-force S3 enumeration.
 
 Only HTTP 200 means "object exists and is publicly readable". All other

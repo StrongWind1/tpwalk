@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Typer CLI entry point for tpwalk.
 
 Three subcommands:

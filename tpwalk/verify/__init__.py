@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Verify pipeline for tpwalk — reads all discovered URLs, deduplicates, HEAD-checks, and writes results.
 
 This subpackage orchestrates the full verification pipeline:

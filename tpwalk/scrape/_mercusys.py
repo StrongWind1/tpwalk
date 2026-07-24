@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Mercusys regional GPL page crawler — two-pass adapted per D-16, SCRP-13.
 
 KEY DIFFERENCE from TP-Link's RegionalSource:

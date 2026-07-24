@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Scrape pipeline for tpwalk -- discovers GPL archive URLs from all regional sources.
 
 This subpackage orchestrates the full scrape pipeline:

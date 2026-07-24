@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape._reddit.RedditSource.
 
 All HTTP is mocked via httpx.MockTransport — no real network calls.

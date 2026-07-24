@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """GitHub community source for the tpwalk scrape pipeline.
 
 Implements two ScrapeSource-conforming classes:

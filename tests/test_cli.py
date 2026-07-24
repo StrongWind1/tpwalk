@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """CLI integration tests for the tpwalk Typer app.
 
 Tests use typer.testing.CliRunner which captures stdout/stderr and captures

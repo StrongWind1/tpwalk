@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for MercusysRegionalSource (tpwalk/scrape/_mercusys.py).
 
 Covers SCRP-13: two-pass Mercusys GPL crawler. All tests use httpx.MockTransport

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Google SERP source for the tpwalk scrape pipeline.
 
 Implements a best-effort, credential-free scraper that queries Google with

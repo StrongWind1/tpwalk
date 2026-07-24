@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Common Crawl Index API source for the tpwalk scrape pipeline.
 
 Queries every historical Common Crawl index to recover GPL archive URLs

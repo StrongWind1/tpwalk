@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape._model_sweep — name extraction, ?model= harvest, two-phase sweep.
 
 All HTTP is mocked via httpx.MockTransport; regions are injected so discover_regions

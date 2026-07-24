@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Two-pass TP-Link regional GPL page crawler and productTree extractor.
 
 Pass 1: Fetch all regional GPL pages concurrently (Semaphore(50)), extract

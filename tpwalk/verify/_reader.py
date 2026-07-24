@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """File reader for the tpwalk verify pipeline.
 
 Discovers and reads all .txt files in the scrapes directory tree (seed/ and all

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """URL canonicalization and S3 URL conversion utilities.
 
 These three pure functions form the normalization foundation that every other

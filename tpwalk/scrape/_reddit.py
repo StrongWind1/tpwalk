@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Reddit community source for the tpwalk scrape pipeline.
 
 Searches Reddit's public unauthenticated JSON API for GPL archive URL mentions

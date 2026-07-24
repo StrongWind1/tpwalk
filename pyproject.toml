@@ -78,7 +78,11 @@ ignore = [
     "D213",     # multi-line summary second line — incompatible with D212
 ]
 
+[tool.ruff.lint.flake8-copyright]
+notice-rgx = "(?i)# SPDX-License-Identifier"
+
 [tool.ruff.lint.per-file-ignores]
+"tpwalk/cli.py" = ["PLR0917"]
 "tests/**" = ["ALL"]
 
 [tool.ty.environment]

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape._wayback -- Wayback CDX resumeKey pagination, prefix queries, retry, dedup.
 
 Tests use inline JSON fixtures and httpx.MockTransport so no real network requests are made.

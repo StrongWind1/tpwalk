@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape._google -- GoogleSource: best-effort Google SERP scraper.
 
 Tests use httpx.MockTransport so no real network requests are made. The handler

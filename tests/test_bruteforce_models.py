@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk/bruteforce/_models.py — pure-function extraction, corpus mining, and candidate format.
 
 No HTTP, no MockTransport, no asyncio. Pure-function unit tests mirroring

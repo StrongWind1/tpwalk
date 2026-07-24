@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk._client — HTTP client factory configuration.
 
 Verifies FOUN-02: build_client() returns a correctly configured AsyncClient

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape._regional -- productTree extraction, phppage URL parsing, HTML fallback, region discovery.
 
 Tests use inline HTML fixtures and httpx.MockTransport so no real network requests are made.

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Shared pytest fixtures for the tpwalk test suite.
 
 Provides a temporary scrapes directory and a representative sample of URLs

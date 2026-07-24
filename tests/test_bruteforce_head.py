@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.bruteforce._head — existence-only HEAD filter with mocked HTTP.
 
 Tests verify that exists_url returns True for HTTP 200, False for all non-200

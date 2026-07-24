@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """BruteforceRunner orchestrator for active S3 candidate enumeration.
 
 This module delivers the active-enumeration slice of tpwalk: it feeds candidates

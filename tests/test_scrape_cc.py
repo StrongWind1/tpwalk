@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape._common_crawl -- Common Crawl index discovery, page-based pagination, retry, no-filtering.
 
 Tests use inline JSON/NDJSON fixtures and httpx.MockTransport so no real network requests are made.

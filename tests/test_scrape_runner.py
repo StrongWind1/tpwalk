@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.scrape -- ScrapeRunner I/O, timestamped directory, txt write.
 
 Per SCRP-04, SCRP-05, DIR-02.

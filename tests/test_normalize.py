@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk._normalize — URL canonicalization and S3 URL conversion.
 
 Verifies FOUN-01 (idempotent normalization), VERF-03 (encoding collapse),

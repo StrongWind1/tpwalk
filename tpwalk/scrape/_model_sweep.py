@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Model-wordlist phppage sweep — recovers GPL for models not linked in any region tree.
 
 The regional crawler (Pass 2, see ``_regional.py``) only queries the phppage

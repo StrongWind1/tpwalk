@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Async HEAD checker for the tpwalk verify pipeline.
 
 Two public functions:

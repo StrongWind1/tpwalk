@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Typed data models for tpwalk verify pipeline output.
 
 Three frozen dataclasses represent the core pipeline types:

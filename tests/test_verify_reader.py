@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.verify._reader — file discovery, normalization, and dedup.
 
 Tests verify that read_all_txt correctly finds txt files in seed/ and timestamped

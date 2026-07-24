@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk.verify._head — HEAD checker with mocked HTTP responses.
 
 Tests verify that head_url returns typed VerifiedEntry / DeadEntry values for

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Pure date-path candidate generator for the brute-force date strategy.
 
 Computes candidate S3 URLs from the calendar and a set of known GPL basenames

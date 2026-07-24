@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Tests for tpwalk/bruteforce/_dates.py — pure-function determinism and URL format.
 
 No HTTP, no fixtures, no asyncio. Mirrors the discipline of tests/test_normalize.py.

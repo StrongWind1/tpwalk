@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Model-name candidate generator for the brute-force model strategy.
 
 Model tokens are extracted at runtime from data/firmware_s3_listing.json

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """End-to-end pipeline tests for VerifyRunner.
 
 Tests verify that VerifyRunner.run() reads URLs from seed/, HEAD-checks them with

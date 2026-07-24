@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """HTTP client factory for tpwalk S3 origin HEAD requests.
 
 A single AsyncClient instance is shared across all concurrent workers so HTTP/2

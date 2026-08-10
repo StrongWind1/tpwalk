@@ -7,14 +7,14 @@
   <a href="https://pypi.org/project/tpwalk/"><img src="https://img.shields.io/pypi/v/tpwalk.svg" alt="PyPI"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.11+-blue.svg" alt="Python 3.11+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License: Apache 2.0"></a>
-  <a href="https://strongwind1.github.io/tpwalk/"><img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Docs"></a>
+  <a href="https://strongwind.dev/tpwalk/"><img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Docs"></a>
 </p>
 
 <p align="center">
-  <a href="https://strongwind1.github.io/tpwalk/">Documentation</a> &bull;
-  <a href="https://strongwind1.github.io/tpwalk/getting-started/installation/">Installation</a> &bull;
-  <a href="https://strongwind1.github.io/tpwalk/getting-started/quick-start/">Quick start</a> &bull;
-  <a href="https://strongwind1.github.io/tpwalk/commands/scrape/">Commands</a>
+  <a href="https://strongwind.dev/tpwalk/">Documentation</a> &bull;
+  <a href="https://strongwind.dev/tpwalk/getting-started/installation/">Installation</a> &bull;
+  <a href="https://strongwind.dev/tpwalk/getting-started/quick-start/">Quick start</a> &bull;
+  <a href="https://strongwind.dev/tpwalk/commands/scrape/">Commands</a>
 </p>
 
 Under the GPL, TP-Link must publish the corresponding source code for the open-source components in its firmware. That source lives in an S3-backed bucket (`static.tp-link.com`) that serves every file without authentication but blocks directory listing, so there is no index and files surface only on scattered regional support pages. tpwalk rebuilds the index: it discovers GPL archive URLs from nine independent sources, HEAD-checks each one against the S3 origin for live status and metadata, and emits a ready-to-run `s5cmd` manifest for mirroring the whole corpus. The same technique covers the Mercusys sub-brand (`static.mercusys.com`).

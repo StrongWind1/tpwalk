@@ -103,7 +103,7 @@ def _parse_cdx_page(lines: list[str], url_prefix: str) -> tuple[set[str], str | 
             continue
 
         if found_delimiter:
-            resume_key = parsed[0] if parsed else None
+            resume_key = str(parsed[0]) if parsed else None
             break
 
         if parsed and parsed[0]:

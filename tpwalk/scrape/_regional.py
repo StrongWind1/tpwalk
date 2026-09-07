@@ -20,7 +20,7 @@ import json
 import logging
 import re
 import string
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import httpx
 
@@ -149,10 +149,12 @@ def _extract_product_tree(html: str) -> dict[str, list[dict[str, str]]] | None:
             depth -= 1
             if depth == 0:
                 try:
-                    return json.loads(raw[: i + 1])
+                    parsed = json.loads(raw[: i + 1])
                 except json.JSONDecodeError as e:
                     _log.warning("productTree JSON parse failed: %s", e)
                     return None
+                else:
+                    return cast("dict[str, list[dict[str, str]]]", parsed)
 
     # Unterminated -- should never happen on well-formed pages
     return None

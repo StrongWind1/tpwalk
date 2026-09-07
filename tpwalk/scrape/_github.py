@@ -39,7 +39,7 @@ import tempfile
 import time
 import urllib.parse
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import httpx
 
@@ -504,7 +504,7 @@ class TPLinkGitHubSource:
             if response is not None and response.status_code == _HTTP_OK:
                 data = response.json()
                 if isinstance(data, list):
-                    return data  # type: ignore[return-value]
+                    return cast("list[dict[str, object]]", data)
         return []
 
     async def _grep_wiki(self, *, repo_html_url: str) -> set[str]:

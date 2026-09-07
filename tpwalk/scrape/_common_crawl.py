@@ -22,7 +22,7 @@ import json
 import logging
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import httpx
 
@@ -247,7 +247,7 @@ class CommonCrawlSource:
             _log.error("Common Crawl: collinfo.json is not a list")
             return []
 
-        return data  # type: ignore[return-value]
+        return cast("list[dict[str, str]]", data)
 
     async def _query_one_index(
         self,

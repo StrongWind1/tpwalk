@@ -250,7 +250,8 @@ class RedditSource:
                     # Strip trailing sentence punctuation to avoid phantom URLs (WR-01).
                     urls.update(u.rstrip(_TRAILING_PUNCT) for u in _GPL_URL_RE.findall(post.get(field, "")))
 
-            after = data.get("after")  # None when no more pages (D-10)
+            _after_raw = data.get("after")
+            after = str(_after_raw) if _after_raw is not None else None  # None when no more pages (D-10)
             if not after or after in seen_cursors:  # null cursor or cycle → stop
                 break
             seen_cursors.add(after)

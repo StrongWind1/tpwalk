@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "tpwalk"
 version = "0.3.1"
@@ -5,36 +9,28 @@ description = "TP-Link GPL source and firmware URL scraper, verifier, and downlo
 readme = "README.md"
 requires-python = ">=3.11,<3.15"
 license = "Apache-2.0"
-authors = [
-    { name = "StrongWind1" },
-]
+authors = [{ name = "StrongWind1" }]
 keywords = [
-    "tp-link",
-    "firmware",
-    "gpl",
-    "scraper",
-    "downloader",
-    "router",
-    "security",
+  "tp-link",
+  "firmware",
+  "gpl",
+  "scraper",
+  "downloader",
+  "router",
+  "security",
 ]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Environment :: Console",
-    "License :: OSI Approved :: Apache Software License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Topic :: Security",
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Security",
 ]
-dependencies = [
-    "httpx[http2]",
-    "beautifulsoup4",
-    "lxml",
-    "rich",
-    "typer",
-]
+dependencies = ["httpx[http2]", "beautifulsoup4", "lxml", "rich", "typer"]
 
 [project.scripts]
 tpwalk = "tpwalk.cli:main"
@@ -45,22 +41,12 @@ Documentation = "https://strongwind1.github.io/tpwalk/"
 Changelog = "https://github.com/StrongWind1/tpwalk/blob/main/CHANGELOG.md"
 Issues = "https://github.com/StrongWind1/tpwalk/issues"
 
-[dependency-groups]
-dev = [
-    "pytest",
-    "ruff",
-    "ty",
-]
-docs = [
-    "mkdocs-material",
-]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [tool.hatch.build.targets.wheel]
 packages = ["tpwalk"]
+
+[dependency-groups]
+dev = ["pytest>=8.0", "ruff>=0.11", "ty>=0.0.1a7", "pre-commit>=4.0"]
+docs = ["mkdocs-material>=9.0"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -72,14 +58,17 @@ line-length = 320
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    "COM812",   # trailing comma — conflicts with ruff formatter
-    "ISC001",   # implicit string concat — conflicts with ruff formatter
-    "D203",     # blank line before class docstring — incompatible with D211
-    "D213",     # multi-line summary second line — incompatible with D212
+  "COM812", # trailing comma — conflicts with ruff formatter
+  "ISC001", # implicit string concat — conflicts with ruff formatter
+  "D203",   # blank line before class docstring — incompatible with D211
+  "D213",   # multi-line summary second line — incompatible with D212
 ]
 
 [tool.ruff.lint.flake8-copyright]
 notice-rgx = "(?i)# SPDX-License-Identifier"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "tpwalk/cli.py" = ["PLR0917"]
@@ -94,5 +83,14 @@ all = "error"
 [tool.ty.terminal]
 error-on-warning = true
 
-[tool.ty.src]
-exclude = ["tests/"]
+[tool.ty.analysis]
+allowed-unresolved-imports = []
+strict-equality-semantics = true
+strict-generic-narrowing = true
+respect-type-ignore-comments = false
+
+[[tool.ty.overrides]]
+include = ["tests/**"]
+
+[tool.ty.overrides.rules]
+all = "ignore"

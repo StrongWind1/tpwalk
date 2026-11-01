@@ -106,7 +106,7 @@ def _parse_retry_seconds(value: str | None) -> float | None:
         Delay in seconds as a float if parseable, or None if absent/malformed.
 
     """
-    if not value:
+    if value is None:
         return None
     # Fast path: numeric delta-seconds or Unix epoch
     try:
@@ -323,7 +323,7 @@ class GitHubSearchSource:
         """
         # Credential guard (D-01, D-02) -- must be first action in run()
         token = os.environ.get("GITHUB_TOKEN")
-        if not token:
+        if token is None:
             _log.warning(
                 "GITHUB_TOKEN is not set; skipping %s (D-02). Set GITHUB_TOKEN to enable GitHub search.",
                 self.name,
@@ -414,7 +414,7 @@ class TPLinkGitHubSource:
         """
         # Credential guard (D-01, D-02) -- same pattern as GitHubSearchSource
         token = os.environ.get("GITHUB_TOKEN")
-        if not token:
+        if token is None:
             _log.warning(
                 "GITHUB_TOKEN is not set; skipping %s (D-02). Set GITHUB_TOKEN to enable TP-LINK org scan.",
                 self.name,

@@ -226,7 +226,7 @@ class RedditSource:
 
         for _page in range(_MAX_REDDIT_PAGES):
             page_params = {**params}
-            if after:
+            if after is not None:
                 page_params["after"] = after
 
             response = await _fetch_with_retry(
@@ -252,7 +252,7 @@ class RedditSource:
 
             _after_raw = data.get("after")
             after = str(_after_raw) if _after_raw is not None else None  # None when no more pages (D-10)
-            if not after or after in seen_cursors:  # null cursor or cycle → stop
+            if after is None or after in seen_cursors:  # null cursor or cycle → stop
                 break
             seen_cursors.add(after)
 

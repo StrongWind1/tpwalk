@@ -183,7 +183,7 @@ class CommonCrawlSource:
         async with asyncio.TaskGroup() as tg:
             for index_entry in indices:
                 cdx_api = index_entry.get("cdx-api")
-                if not cdx_api:
+                if cdx_api is None:
                     _log.debug("Skipping index without cdx-api key: %s", index_entry.get("id", "unknown"))
                     continue
 
@@ -374,8 +374,6 @@ async def _fetch_with_retry(  # noqa: PLR0913 -- mirrors the _wayback/_reddit fe
             return None  # host already refusing connections; do not pile on
         try:
             async with sem:
-                if state.tripped:
-                    return None  # re-check after queueing on the sem so tripped tasks drain instantly
                 # Politeness jitter inside the semaphore slot spaces real requests
                 # out against the index host's burst throttle (no-op'd in tests).
                 await asyncio.sleep(random.uniform(_JITTER_MIN_S, _JITTER_MAX_S))  # noqa: S311 -- jitter, not cryptographic
@@ -394,7 +392,7 @@ async def _fetch_with_retry(  # noqa: PLR0913 -- mirrors the _wayback/_reddit fe
             _log.debug("CC %s failed: %s (attempt %d/%d)", params.get("url", url), err, attempt + 1, max_retries + 1)
             _record_transport_failure(state)
 
-        if attempt < max_retries and not state.tripped:
+        if attempt < max_retries:
             await asyncio.sleep(2.0 * (2**attempt))  # 2s, 4s, 8s per D-07
 
     return None

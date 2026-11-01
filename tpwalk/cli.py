@@ -169,7 +169,7 @@ def cmd_scrape(
     # Credential check for GitHub sources (WR-06): when GITHUB_TOKEN is absent the GitHub
     # sources short-circuit and return set(), producing (0, 0) in per_source_counts.
     # That is indistinguishable from "ran and found nothing" without the token check here.
-    github_token_absent: bool = not os.environ.get("GITHUB_TOKEN")
+    github_token_absent: bool = os.environ.get("GITHUB_TOKEN") is None
     _github_source_names: frozenset[str] = frozenset({"github_search", "tplink_github"})
 
     for source_name, label in _source_labels.items():

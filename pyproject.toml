@@ -7,7 +7,8 @@ name = "tpwalk"
 version = "0.3.1"
 description = "TP-Link GPL source and firmware URL scraper, verifier, and downloader"
 readme = "README.md"
-requires-python = ">=3.11,<3.15"
+# 3.11.5+: soupsieve 3.x+ (the CSS selector engine behind BeautifulSoup .select()) requires it, and the last 3.11.0-compatible soupsieve (2.10) has unfixed CVEs.
+requires-python = ">=3.11.5,<3.15"
 license = "Apache-2.0"
 authors = [{ name = "StrongWind1" }]
 keywords = [

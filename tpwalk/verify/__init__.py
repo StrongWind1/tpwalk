@@ -149,7 +149,7 @@ class VerifyRunner:
 
         # verified.json — flat array of D-06 field dicts
         data.joinpath("verified.json").write_text(
-            json.dumps([dataclasses.asdict(v) for v in verified], indent=2),
+            json.dumps([dataclasses.asdict(v) for v in verified], indent=2) + "\n",
             encoding="utf-8",
         )
 
@@ -172,7 +172,7 @@ class VerifyRunner:
 
         # dead.json — flat array of DeadEntry field dicts
         data.joinpath("dead.json").write_text(
-            json.dumps([dataclasses.asdict(d) for d in dead], indent=2),
+            json.dumps([dataclasses.asdict(d) for d in dead], indent=2) + "\n",
             encoding="utf-8",
         )
 

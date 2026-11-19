@@ -141,6 +141,22 @@ def test_verify_runner_writes_all_five_files(tmp_path: Path) -> None:
         assert (tmp_path / filename).exists(), f"{filename} was not created"
 
 
+def test_verify_runner_json_outputs_end_with_newline(tmp_path: Path) -> None:
+    """verified.json and dead.json end with exactly one trailing newline."""
+    seed = tmp_path / "scrapes" / "seed"
+    seed.mkdir(parents=True)
+    (seed / "urls.txt").write_text(
+        "https://static.tp-link.com/resources/gpl/live.tgz\nhttps://static.tp-link.com/resources/gpl/dead.tgz\n",
+        encoding="utf-8",
+    )
+
+    _run_verify_runner(tmp_path, _make_mixed_transport("live.tgz"))
+
+    for filename in ("verified.json", "dead.json"):
+        text = (tmp_path / filename).read_text(encoding="utf-8")
+        assert text.endswith("]\n"), f"{filename} does not end with a single newline"
+
+
 def test_verify_runner_s5cmd_download_format(tmp_path: Path) -> None:
     """s5cmd_download.txt lines are runnable `cp --if-size-differ` commands with literal keys.
 

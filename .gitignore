@@ -256,3 +256,6 @@ __marimo__/
 
 # --------------- Custom ------------------
 ref_docs/
+
+# Built-site checkers (npm ci)
+node_modules/

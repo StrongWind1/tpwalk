@@ -41,7 +41,6 @@ _log = logging.getLogger(__name__)
 
 # --- Constants ---
 
-_HTTP_OK = 200
 _HTTP_TOO_MANY_REQUESTS = 429
 
 _GOOGLE_SEARCH = "https://www.google.com/search"

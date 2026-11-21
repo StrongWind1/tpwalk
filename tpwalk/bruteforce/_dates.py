@@ -30,11 +30,6 @@ if TYPE_CHECKING:
 # Default start date for the date-path strategy (BRUT-02 SC3; per CONTEXT).
 _BASE_DATE = date(2021, 1, 1)
 
-# Known outlier start: one file at /2018/201804/20180404/ (EAP Controller_V2.5_GPL.zip).
-# The runner (05-04) decides which date window to pass; this constant is exported
-# for runner reference and is not used inside this module's default.
-_BARE_YEAR_START = date(2018, 1, 1)
-
 # Archive extensions observed in gpl_urls_master.txt (D-05).
 # NOTE: the date strategy consumes full basenames (already have an extension),
 # so _EXTENSIONS is exposed here for the model generator (05-03) to import,

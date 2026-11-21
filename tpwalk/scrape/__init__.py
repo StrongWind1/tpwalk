@@ -54,7 +54,7 @@ class ScrapeSource(Protocol):
     @property
     def name(self) -> str:
         """Filename stem: f"{self.name}.txt" produces e.g. "regional_crawl.txt"."""
-        ...
+        raise NotImplementedError
 
     async def run(
         self,
@@ -65,7 +65,7 @@ class ScrapeSource(Protocol):
         task_pass2: TaskID | None = None,
     ) -> set[str]:
         """Execute the source and return a raw set of discovered URLs."""
-        ...
+        raise NotImplementedError
 
 
 class ScrapeRunner:

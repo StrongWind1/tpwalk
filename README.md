@@ -105,7 +105,7 @@ tpwalk exposes three subcommands. Run `tpwalk <command> --help` for the full opt
 Discovers GPL archive URLs from every source and writes one `.txt` file per source into a timestamped directory under `data/scrapes/`.
 
 | Option | Default | Description |
-|---|---|---|
+| --- | --- | --- |
 | `--data-dir` | `data` | Root data directory; the `scrapes/` subdirectory is written here. |
 | `--model-sweep` | off | Also run the `phppage` model-wordlist sweep (heavy: thousands of requests to `www.tp-link.com`, several minutes). |
 | `--sweep-max-models` | none | Cap the number of candidate models for `--model-sweep`. |
@@ -115,7 +115,7 @@ Discovers GPL archive URLs from every source and writes one `.txt` file per sour
 Reads every `.txt` under `data/scrapes/`, normalizes and deduplicates the URLs, HEAD-checks each against the S3 origin, and batch-writes the five output files.
 
 | Option | Default | Description |
-|---|---|---|
+| --- | --- | --- |
 | `-c`, `--concurrency` | `100` | Maximum concurrent S3 HEAD requests. |
 | `--data-dir` | `data` | Root data directory; reads `scrapes/` from here and writes output here. |
 
@@ -124,7 +124,7 @@ Reads every `.txt` under `data/scrapes/`, normalizes and deduplicates the URLs, 
 Actively enumerates candidate URLs the passive sources never reference, by crossing a date-path generator with a model-name generator and HEAD-checking each candidate.
 
 | Option | Default | Description |
-|---|---|---|
+| --- | --- | --- |
 | `--strategy` | `all` | Which generator(s) to run: `dates`, `models`, or `all`. |
 | `--thorough` | off | Model strategy over ~389 known GPL date directories (medium coverage, ~40M HEADs). |
 | `--exhaustive` | off | Full model x date-path cross (~203M HEADs). Always pair with `--max-candidates`. |
@@ -142,7 +142,7 @@ Actively enumerates candidate URLs the passive sources never reference, by cross
 `scrape` runs each source concurrently under a shared async client; a failure in one source never aborts the others.
 
 | Source | Output file | What it does | Needs token |
-|---|---|---|:---:|
+| --- | --- | --- | :---: |
 | Regional crawl | `regional_crawl.txt` | Two-pass crawl of per-country GPL pages: `productTree` JSON plus `phppage` sub-pages | no |
 | Wayback Machine | `wayback_cdx.txt` | Internet Archive CDX API across five URL prefixes, with `resumeKey` pagination | no |
 | Common Crawl | `common_crawl.txt` | CC index API across all historical indices | no |
@@ -163,7 +163,7 @@ Actively enumerates candidate URLs the passive sources never reference, by cross
 `verify` writes five files into `--data-dir` (default `data/`):
 
 | File | Format | Contents |
-|---|---|---|
+| --- | --- | --- |
 | `verified.json` | JSON array | One object per live archive with full S3 metadata (`size`, `etag`, `content_type`, `last_modified`, `version_id`, `replication_status`, `encryption`, `server`, `status`, `checked_at`). |
 | `verified.txt` | text | One `s3://` URL per line (direct input for `s5cmd`). |
 | `s5cmd_download.txt` | text | A runnable `cp --if-size-differ` manifest for `s5cmd --no-sign-request run`. |
@@ -172,7 +172,7 @@ Actively enumerates candidate URLs the passive sources never reference, by cross
 
 ## Repository structure
 
-```
+```text
 tpwalk/
 |-- cli.py              # Typer entry point: scrape / verify / bruteforce
 |-- _client.py          # shared httpx AsyncClient factory (HTTP/2, retries, headers)
